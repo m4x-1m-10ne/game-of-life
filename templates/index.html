@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game of Life</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <style>
+        .grid {
+            border-collapse: collapse;
+            margin: 20px auto;
+        }
+        .grid td {
+            width: 20px;
+            height: 20px;
+            border: 1px solid #ccc;
+        }
+        .alive {
+            background-color: black;
+        }
+        .dead {
+            background-color: white;
+        }
+        .generation {
+            text-align: center;
+            font-size: 18px;
+            margin: 10px;
+        }
+        .controls {
+            text-align: center;
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">Game of Life</h1>
+        
+        <div class="controls">
+            <form method="post" style="display: inline-block;">
+                <button type="submit" name="action" value="start" class="btn btn-primary">Start</button>
+                <button type="submit" name="action" value="stop" class="btn btn-default">Stop</button>
+                <button type="submit" name="action" value="step" class="btn btn-default">Step</button>
+                <button type="submit" name="action" value="clear" class="btn btn-danger">Clear</button>
+                <button type="submit" name="action" value="random" class="btn btn-success">Random</button>
+            </form>
+        </div>
+
+        <div class="generation">
+            Generation: {{ generation }}
+        </div>
+
+        <table class="grid">
+            {% for row in grid %}
+            <tr>
+                {% for cell in row %}
+                <td class="{% if cell %}alive{% else %}dead{% endif %}"></td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>
